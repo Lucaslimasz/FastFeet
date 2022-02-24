@@ -10,8 +10,7 @@ import FF from '../../assets/FF.png';
 
 import * as S from './styles';
 
-export default Login = () => {
-  
+export default Login = ({navigation}) => {
   return (
     <S.Container>
       <S.EffectFF source={FF} />
@@ -40,7 +39,7 @@ export default Login = () => {
           </TouchableOpacity>
         </S.Actions>
 
-        <Button>Entrar</Button>
+        <Button onPress={() => navigation.navigate('Delivery')}>Entrar</Button>
       </S.Wrapper>
     </S.Container>
   );
