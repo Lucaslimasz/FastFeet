@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 
 import * as S from './styles';
 
@@ -13,10 +13,11 @@ import maskCpf from '../../../../utils/mask-cpf';
 export default Input = ({type = 'cpf'}) => {
   const [isClosedViewPassword, setIsClosedViewPassword] = useState(true);
   const [cpf, setCpf] = useState('');
+  const [isFocusInput, setIsFocusInput] = useState(false);
 
   if (type === 'cpf') {
     return (
-      <S.Container>
+      <S.Container focus={isFocusInput}>
         <S.Icon>
           <S.Image source={User} />
         </S.Icon>
@@ -24,16 +25,22 @@ export default Input = ({type = 'cpf'}) => {
           placeholder="CPF"
           value={cpf}
           onChangeText={e => setCpf(maskCpf(e))}
+          onFocused={(e) => console.log(true)}
+          
         />
       </S.Container>
     );
   } else if (type === 'password') {
     return (
-      <S.Container>
+      <S.Container focus={isFocusInput}>
         <S.Icon>
           <S.Image source={Password} />
         </S.Icon>
-        <S.Input placeholder="Senha" secureTextEntry={isClosedViewPassword} />
+        <S.Input
+          placeholder="Senha"
+          secureTextEntry={isClosedViewPassword}
+          onFocused={() => setIsFocusInput(true)}
+        />
         <TouchableOpacity
           onPress={() => setIsClosedViewPassword(prevState => !prevState)}>
           {isClosedViewPassword ? (

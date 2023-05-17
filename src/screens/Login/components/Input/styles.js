@@ -8,8 +8,9 @@ export const Container = styled.View`
 
   flex-direction: row;
   align-items: center;
-  /* border: 2px solid ${({theme}) => theme.colors.yellow}; */
   margin-bottom: 10px;
+  ${({focus}) =>
+    focus && 'border: 2px solid ${({theme}) => theme.colors.yellow};'}
 `;
 
 export const Icon = styled.View`
